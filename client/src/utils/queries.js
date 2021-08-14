@@ -21,6 +21,16 @@ export const GET_DRINKS = gql`
       }
 `;
 
+export const GET_DRINK_BY_INGREDIENT = gql`
+    query drinkByIngredient($ingredient: String) {
+        drinkByIngredient(ingredient: $ingredient) {
+            name
+            ingredients
+            instructions
+            measure
+        }
+    }`;
+
 export const QUERY_SINGLE_PROFILE = gql`
   query singleProfile($profileId: ID!) {
     profile(profileId: $profileId) {

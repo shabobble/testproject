@@ -22,7 +22,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    
+    drinkByIngredient: async (parent, args) => {
+      console.log(args)
+      console.log(args.ingredient)
+      return await Drink.find({ingredients: args.ingredient})
   },
+},
 
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
