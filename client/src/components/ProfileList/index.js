@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 // import { useQuery } from '@apollo/react-hooks'
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { GET_DRINK_BY_INGREDIENT } from '../../utils/queries';
 const ProfileList = ({ drinks, title }) => {
   const [ingredient, setIngredient] = useState();
 
-  const { loading, data } = useQuery(GET_DRINK_BY_INGREDIENT, {
+  const [search, { loading, data }] = useLazyQuery(GET_DRINK_BY_INGREDIENT, {
     variables: { ingredient: ingredient }
   })
   const drinkData = data?.drinkByIngredient || [];
@@ -15,22 +15,20 @@ const ProfileList = ({ drinks, title }) => {
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(ingredient)
+    search();
+  }
 
-    console.log(ingredient);
+  //   try {
 
-    try {
-      // const data = await useQuery(GET_DRINK_BY_INGREDIENT, {
-      //   variables: { ingredient: ingredient }
-      // });
-
-      // const drinkData = data?.drinkByIngredient || [];
-      // console.log(drinkData)
-
-      setIngredient('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //   console.log(data)
+  //   console.log(drinkData);
+  //   // setIngredient('');
+  //   console.log(ingredient);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   // if (!drinks.length) {
   //   return <h3>No Drinks Yet</h3>;
