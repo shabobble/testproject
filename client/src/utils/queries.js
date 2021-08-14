@@ -10,6 +10,17 @@ export const QUERY_PROFILES = gql`
   }
 `;
 
+export const GET_DRINKS = gql`
+    query allDrinks {
+        drinks {
+            name
+            ingredients
+            measure
+            instructions
+        }
+      }
+`;
+
 export const QUERY_SINGLE_PROFILE = gql`
   query singleProfile($profileId: ID!) {
     profile(profileId: $profileId) {
@@ -29,3 +40,4 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
