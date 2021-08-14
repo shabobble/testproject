@@ -1,5 +1,4 @@
 import { useLazyQuery } from '@apollo/client';
-// import { useQuery } from '@apollo/react-hooks'
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GET_DRINK_BY_INGREDIENT } from '../../utils/queries';
@@ -17,6 +16,7 @@ const ProfileList = ({ drinks, title }) => {
     event.preventDefault();
     console.log(ingredient)
     search();
+ 
   }
 
   //   try {
@@ -57,34 +57,34 @@ const ProfileList = ({ drinks, title }) => {
           </button>
         </div>
       </form>
+      <div>
+        <h3 className="text-primary">{title}</h3>
+        <div className="flex-row justify-space-between my-4">
+          {drinkData &&
+            drinkData.map((drink) => (
+              <div key={drink._id} className="col-12 col-xl-6">
+                <div className="card mb-3">
+                  <h4 className="card-header bg-dark text-light p-2 m-0">
+                    {drink.name} <br />
+                    <span className="text-white" style={{ fontSize: '1rem' }}>
+                      currently has {drink.name ? drink.ingredients.length : 0}{' '}
+                      ingredient
+                      {drink.name && drink.name.length === 1 ? '' : 's'}
+                    </span>
+                  </h4>
+  
+                  <Link
+                    className="btn btn-block btn-squared btn-light text-dark"
+                    to={`/drinks/${drink._id}`}
+                  >
+                    View and endorse their skills.
+                  </Link>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
-    // <div>
-    //   <h3 className="text-primary">{title}</h3>
-    //   <div className="flex-row justify-space-between my-4">
-    //     {drinks &&
-    //       drinks.map((drink) => (
-    //         <div key={drink._id} className="col-12 col-xl-6">
-    //           <div className="card mb-3">
-    //             <h4 className="card-header bg-dark text-light p-2 m-0">
-    //               {drink.name} <br />
-    //               <span className="text-white" style={{ fontSize: '1rem' }}>
-    //                 currently has {drink.name ? drink.ingredients.length : 0}{' '}
-    //                 ingredient
-    //                 {drink.name && drink.name.length === 1 ? '' : 's'}
-    //               </span>
-    //             </h4>
-
-    //             <Link
-    //               className="btn btn-block btn-squared btn-light text-dark"
-    //               to={`/drinks/${drink._id}`}
-    //             >
-    //               View and endorse their skills.
-    //             </Link>
-    //           </div>
-    //         </div>
-    //       ))}
-    //   </div>
-    // </div>
   );
 };
 

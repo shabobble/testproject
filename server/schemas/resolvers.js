@@ -24,8 +24,6 @@ const resolvers = {
     },
     
     drinkByIngredient: async (parent, args) => {
-      console.log(args)
-      console.log(args.ingredient)
       return await Drink.find({ingredients: args.ingredient})
   },
 },
